@@ -1,0 +1,20 @@
+{
+  "name": "chatroom-example",
+  "version": "1.0.0",
+  "description": "chatroom example, use react &amp; vue, powered by koa2.x with socket.io, build with webpack &amp; flowtype",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jiasm/chatroom-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jiasm/chatroom-example/issues"
+  },
+  "homepage": "https://github.com/Jiasm/chatroom-example#readme"
+}
