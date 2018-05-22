@@ -43,5 +43,8 @@ module.exports = {
     })
   ],
   devtool: 'sourcemap',
-  mode: 'production'
+  mode: 'production',
+  optimization: {
+    minimize: false
+  }
 }
