@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin')
 const path = require('path')
 const fs = require('fs')
 
@@ -20,11 +21,27 @@ module.exports = {
     path: path.join(__dirname, '../'),
     filename: 'server.js'
   },
+  node: {
+    __filename: false,
+    __dirname: false
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      }
+    ]
+  },
   externals: nodeModules,
   plugins: [
-    // new webpack.IgnorePlugin(/\.(css|less)$/),
-    // new webpack.BannerPlugin('require("source-map-support").install();',
-    //                          { raw: true, entryOnly: false })
+    new FlowBabelWebpackPlugin({
+      warn: true
+    })
   ],
-  devtool: 'sourcemap'
+  devtool: 'sourcemap',
+  mode: 'production'
 }
