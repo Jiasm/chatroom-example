@@ -4,7 +4,7 @@
   "description": "chatroom example, use react &amp; vue, powered by koa2.x with socket.io, build with webpack &amp; flowtype",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "flow": "flow"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Jiasm/chatroom-example/issues"
   },
-  "homepage": "https://github.com/Jiasm/chatroom-example#readme"
+  "homepage": "https://github.com/Jiasm/chatroom-example#readme",
+  "devDependencies": {
+    "flow-bin": "^0.72.0"
+  }
 }
