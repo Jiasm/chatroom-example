@@ -4,10 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:react": "webpack --config webpack.config.react.js",
+    "watch:react": "webpack --config webpack.config.react.js --watch",
+    "build:vue": "webpack --config webpack.config.vue.js",
+    "watch:vue": "webpack --config webpack.config.vue.js --watch",
+    "build": "npm run build:react && npm run build:vue"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-syntax-flow": "^6.18.0",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-flow": "^6.23.0",
+    "flow-babel-webpack-plugin": "^1.1.1",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
+  }
 }

@@ -1,13 +1,15 @@
+const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin')
 const path = require('path')
 
 module.exports = {
-  mode: 'production',
-  entry: {
-    react: './index.react.js',
-    vue: './index.vue.js'
+  module: {
+    rules: []
   },
-  output: {
-    path: path.resolve(__dirname, '../dist'),
-    filename: '[name].bundle.js'
-  }
+  plugins: [
+    new FlowBabelWebpackPlugin({
+      warn: true
+    })
+  ],
+  devtool: 'sourcemap',
+  mode: 'production'
 }
