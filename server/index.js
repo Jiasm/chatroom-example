@@ -94,6 +94,10 @@ module.exports = require("koa");
 const Koa = __webpack_require__(2);
 const socket = __webpack_require__(1);
 const http = __webpack_require__(0);
+const app = new Koa();
+// #FlowIgnoreAsset
+const server = http.Server(app.callback());
+const io = socket(server);
 
 const str = '向Markdown工程师致敬.';
 
@@ -101,9 +105,18 @@ function upperCase(str) {
   return str.toUpperCase();
 }
 
-http.createServer((req, res) => {
-  res.end(upperCase(str));
-}).listen(12306, _ => console.log('server run as http://127.0.0.1:12306'));
+app.use(async (context, next) => {
+  context.body = upperCase(str);
+});
+
+io.on('connection', socket => {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', data => {
+    console.log(data);
+  });
+});
+
+server.listen(12306, _ => console.log('server run as http://127.0.0.1:12306'));
 
 /***/ })
 /******/ ]);

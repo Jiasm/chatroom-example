@@ -9,4 +9,6 @@
 
 [options]
 module.system=haste
+suppress_comment=\\(.\\|\n\\)*\\#FlowExpectError
+suppress_comment=\\(.\\|\n\\)*\\#FlowIgnoreAsset
 [strict]
