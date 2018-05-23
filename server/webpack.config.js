@@ -14,11 +14,11 @@ fs.existsSync('node_modules') &&
     })
 
 module.exports = {
-  entry: './index.js',
+  entry: './index.babel.js',
   target: 'node',
   output: {
-    path: path.join(__dirname, '../'),
-    filename: 'server.js'
+    path: __dirname,
+    filename: 'index.js'
   },
   node: {
     __filename: false,

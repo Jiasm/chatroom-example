@@ -4,7 +4,7 @@
   "description": "chatroom example, use react &amp; vue, powered by koa2.x with socket.io, build with webpack &amp; flowtype",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon server",
     "flow": "flow"
   },
   "repository": {

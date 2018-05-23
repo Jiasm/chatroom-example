@@ -17,6 +17,12 @@
 npm run init
 ```
 
+以及因为使用`flow`，如果需要开发修改的话，需要全局安装如下插件：
+
+```bash
+npm i -g flow-typed
+```
+
 ### redis 的安装
 
 #### Mac

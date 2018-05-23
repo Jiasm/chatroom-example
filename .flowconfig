@@ -4,8 +4,9 @@
 
 [libs]
 ./src/libs
+./flow-typed
 [lints]
 
 [options]
-
+module.system=haste
 [strict]
