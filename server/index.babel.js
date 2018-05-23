@@ -4,8 +4,7 @@ const Koa = require('koa')
 const socket = require('socket.io')
 const http = require('http')
 const app = new Koa()
-// #FlowIgnoreAsset
-const server = http.Server(app.callback())
+const server = (http.Server: Function)(app.callback())
 
 const io = socket(server)
 

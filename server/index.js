@@ -95,8 +95,8 @@ const Koa = __webpack_require__(2);
 const socket = __webpack_require__(1);
 const http = __webpack_require__(0);
 const app = new Koa();
-// #FlowIgnoreAsset
 const server = http.Server(app.callback());
+
 const io = socket(server);
 
 const str = '向Markdown工程师致敬.';

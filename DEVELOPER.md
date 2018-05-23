@@ -4,3 +4,7 @@
 ```
 // #FlowIgnoreAsset
 ```
+
+> 感谢[@hilu luke](https://github.com/wszgxa)帮忙解决的问题
+> 一些大小写不统一，因为涉及到js的关键字。。
+> [docs here](https://flow.org/en/docs/types/functions/)
