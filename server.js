@@ -81,7 +81,7 @@ module.exports = require("http");
 
 const http = __webpack_require__(0);
 
-const str = 'hello world.';
+const str = '向Markdown工程师致敬.';
 
 function upperCase(str) {
   return str.toUpperCase();

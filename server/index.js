@@ -2,7 +2,7 @@
 
 const http = require('http')
 
-const str: string = 'hello world.'
+const str: string = '向Markdown工程师致敬.'
 
 function upperCase(str: string): string {
   return str.toUpperCase()
