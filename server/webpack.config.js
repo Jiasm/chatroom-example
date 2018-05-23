@@ -1,4 +1,3 @@
-const webpack = require('webpack')
 const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin')
 const path = require('path')
 const fs = require('fs')
