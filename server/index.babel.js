@@ -15,11 +15,28 @@ function upperCase(str: string): string {
 }
 
 app.use(async (context, next) => {
-  context.body = upperCase(str)
+  context.body = `
+    <html>
+      <body>
+        Hello
+      </body>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+      <script>
+        window.addEventListener('load', () => {
+          let socket = io.connect('http://127.0.0.1:12306')
+
+          socket.on('message', _ => {
+            console.log(_)
+          })
+        })
+      </script>
+    </html>
+  `
 })
 
 io.on('connection', socket => {
-  socket.emit('news', { hello: 'world' })
+  console.log('new collection')
+  socket.emit('message', { hello: 'world' })
   socket.on('my other event', data => {
     console.log(data)
   })
