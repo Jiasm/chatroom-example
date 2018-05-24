@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+</head>
+
+<body>
+  Hello
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+<script src="react.bundle.js"></script>
+<script>
+  window.addEventListener('load', () => {
+    let socket = io.connect('http://127.0.0.1:12306')
+
+    socket.on('message', _ => {
+      console.log(_)
+    })
+  })
+</script>
+
+</html>

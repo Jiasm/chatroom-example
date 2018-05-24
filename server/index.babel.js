@@ -1,9 +1,14 @@
 // @flow
 
 const Koa = require('koa')
+const Router = require('koa-router')
+const serve = require('koa-static')
+const views = require('koa-views')
 const socket = require('socket.io')
 const http = require('http')
+const path = require('path')
 const app = new Koa()
+const router = new Router()
 const server = (http.Server: Function)(app.callback())
 
 const io = socket(server)
@@ -14,25 +19,27 @@ function upperCase(str: string): string {
   return str.toUpperCase()
 }
 
-app.use(async (context, next) => {
-  context.body = `
-    <html>
-      <body>
-        Hello
-      </body>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
-      <script>
-        window.addEventListener('load', () => {
-          let socket = io.connect('http://127.0.0.1:12306')
+// #FlowIgnoreAsset
+app.use(serve(path.resolve(__dirname, '../dist')))
+console.log(path.resolve(__dirname, '../dist'))
 
-          socket.on('message', _ => {
-            console.log(_)
-          })
-        })
-      </script>
-    </html>
-  `
+app.use(
+  // #FlowIgnoreAsset
+  views(path.resolve(__dirname, '../views'), {
+    map: {
+      ejs: 'ejs'
+    },
+    extension: 'ejs'
+  })
+)
+
+router.get('/', async (context, next) => {
+  await context.render('index.react', {
+    title: 'hello'
+  })
 })
+
+app.use(router.routes()).use(router.allowedMethods())
 
 io.on('connection', socket => {
   console.log('new collection')
@@ -43,3 +50,5 @@ io.on('connection', socket => {
 })
 
 server.listen(12306, _ => console.log('server run as http://127.0.0.1:12306'))
+
+//
