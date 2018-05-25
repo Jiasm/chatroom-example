@@ -20,7 +20,7 @@ module.exports = frameKey => {
         warn: true
       }),
       new HtmlWebpackPlugin({
-        filename: path.resolve(__dirname, '../../views', `index.ejs`),
+        filename: path.resolve(__dirname, '../../views', `${frameKey}.ejs`),
         template:
           '!!html-loader!' +
           path.relative(
