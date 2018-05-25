@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:react": "webpack --config webpack.config.react.js",
-    "watch:react": "webpack --config webpack.config.react.js --watch",
-    "build:vue": "webpack --config webpack.config.vue.js",
-    "watch:vue": "webpack --config webpack.config.vue.js --watch",
+    "build:react": "webpack --config ./react/webpack.config.js",
+    "watch:react": "webpack --config ./react/webpack.config.js --watch",
+    "build:vue": "webpack --config ./vue/webpack.config.js",
+    "watch:vue": "webpack --config ./vue/webpack.config.js --watch",
     "build": "npm run build:react && npm run build:vue"
   },
   "keywords": [],

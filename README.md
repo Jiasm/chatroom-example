@@ -11,7 +11,7 @@
 
 ### npm依赖的安装
 
-> 会动态安装根目录及`client`、`server`目录下的各种依赖文件。
+> 可以执行下边的命令，会动态安装根目录及`client`、`server`目录下的各种依赖文件。
 
 ```bash
 npm run init

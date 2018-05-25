@@ -5,13 +5,13 @@ const path = require('path')
 module.exports = frameKey => {
   return {
     entry: {
-      [frameKey]: `./index.${frameKey}.js`
+      [frameKey]: path.resolve(__dirname, `../${frameKey}/index.js`)
     },
     module: {
       rules: []
     },
     output: {
-      path: path.resolve(__dirname, '../dist'),
+      path: path.resolve(__dirname, '../../dist'),
       filename: '[name].bundle.js',
       publicPath: '/'
     },
@@ -20,8 +20,13 @@ module.exports = frameKey => {
         warn: true
       }),
       new HtmlWebpackPlugin({
-        filename: path.join('../views', `index.${frameKey}.ejs`),
-        template: path.join('!!html-loader!./', `index.${frameKey}.ejs`),
+        filename: path.resolve(__dirname, '../../views', `index.ejs`),
+        template:
+          '!!html-loader!' +
+          path.relative(
+            process.cwd(),
+            path.resolve(__dirname, `../${frameKey}/index.ejs`)
+          ),
         inject: true, // 打包之后的js插入的位置，true/'head'/'body'/false,
         hash: true,
         showErrors: false,
