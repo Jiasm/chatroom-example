@@ -38,8 +38,6 @@ brew services start redis # start redis
 brew services stop  redis # stop  redis
 ```
 
-
-
 然后我们通过以下命令来判断服务是否正常运行，如果得到`pong`则表示运行正常
 
 ```bash
