@@ -165,8 +165,5 @@ io.on('connection', socket => {
 
 server.listen(12306, _ => console.log('server run as http://127.0.0.1:12306'));
 
-//
-
 /***/ })
 /******/ ]);
-//# sourceMappingURL=index.js.map
