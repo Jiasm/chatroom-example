@@ -33,9 +33,15 @@ app.use(
   })
 )
 
-router.get('/', async (context, next) => {
-  await context.render('index.react', {
-    title: 'hello'
+router.get('/react', async (context, next) => {
+  await context.render('react', {
+    title: 'react-chatroom'
+  })
+})
+
+router.get('/vue', async (context, next) => {
+  await context.render('vue', {
+    title: 'vue-chatroom'
   })
 })
 
