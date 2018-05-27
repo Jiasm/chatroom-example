@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const path = require('path')
 
-module.exports = frameKey => {
+module.exports = (frameKey, options = {}) => {
   let isReact = frameKey === 'react'
   return {
     entry: {
@@ -24,47 +24,7 @@ module.exports = frameKey => {
       ]
     },
     module: {
-      rules: [
-        // {
-        //   test: isReact ? /\.js(x)?$/ : /\.(vue|js)$/,
-        //   exclude: /node_modules/,
-        //   enforce: 'pre',
-        //   use: [
-        //     {
-        //       loader: 'babel-loader',
-        //       options: {
-        //         presets: ['flow'],
-        //         plugins: ['syntax-jsx', 'transform-flow-strip-types']
-        //       }
-        //     }
-        //   ]
-        // },
-        {
-          test: /\.(js)$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                presets: ['env'],
-                plugins: ['transform-vue-jsx']
-              }
-            }
-          ]
-        },
-        {
-          test: isReact ? /\.js(x)?$/ : /\.(vue)$/,
-          exclude: /node_modules/,
-          use: [
-            {
-              loader: isReact ? 'babel-loader' : 'vue-loader',
-              options: {
-                presets: ['env'],
-                plugins: [isReact ? 'transform-react-jsx' : 'transform-vue-jsx']
-              }
-            }
-          ]
-        },
+      rules: options.rules.concat([
         {
           test: /\.s?css$/,
           use: ExtractTextPlugin.extract({
@@ -97,42 +57,39 @@ module.exports = frameKey => {
             }
           ]
         }
-      ]
+      ])
     },
     output: {
       path: path.resolve(__dirname, '../../dist'),
       filename: '[name].bundle.js',
       publicPath: '/'
     },
-    plugins: [].concat(
-      [
-        new FlowBabelWebpackPlugin({
-          warn: true
-        }),
-        new HtmlWebpackPlugin({
-          filename: path.resolve(__dirname, '../../views', `${frameKey}.ejs`),
-          template:
-            '!!html-loader!' +
-            path.relative(
-              process.cwd(),
-              path.resolve(__dirname, `../${frameKey}/index.ejs`)
-            ),
-          inject: true, // 打包之后的js插入的位置，true/'head'/'body'/false,
-          hash: true,
-          showErrors: false,
-          minify: {
-            removeComments: true,
-            collapseWhitespace: false
-          }
-        }),
-        new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: '"development"'
-          }
-        })
-      ],
-      isReact ? [] : [new VueLoaderPlugin()]
-    ),
+    plugins: options.plugins.concat([
+      new FlowBabelWebpackPlugin({
+        warn: true
+      }),
+      new HtmlWebpackPlugin({
+        filename: path.resolve(__dirname, '../../views', `${frameKey}.ejs`),
+        template:
+          '!!html-loader!' +
+          path.relative(
+            process.cwd(),
+            path.resolve(__dirname, `../${frameKey}/index.ejs`)
+          ),
+        inject: true, // 打包之后的js插入的位置，true/'head'/'body'/false,
+        hash: true,
+        showErrors: false,
+        minify: {
+          removeComments: true,
+          collapseWhitespace: false
+        }
+      }),
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: '"development"'
+        }
+      })
+    ]),
     devtool: 'sourcemap',
     mode: 'production'
   }
