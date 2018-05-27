@@ -11,5 +11,3 @@ echo "build client dist";
 echo "build client dist success";
 
 echo "build completed";
-echo "start project";
-npm start;
