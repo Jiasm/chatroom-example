@@ -21,7 +21,6 @@ function upperCase(str: string): string {
 
 // #FlowIgnoreAsset
 app.use(serve(path.resolve(__dirname, '../dist')))
-console.log(path.resolve(__dirname, '../dist'))
 
 app.use(
   // #FlowIgnoreAsset
