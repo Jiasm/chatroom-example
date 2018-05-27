@@ -3,26 +3,16 @@ const options = {
     {
       test: /\.js(x)?$/,
       exclude: /node_modules/,
-      enforce: 'pre',
       use: [
         {
           loader: 'babel-loader',
           options: {
-            presets: ['flow'],
-            plugins: ['syntax-jsx', 'transform-flow-strip-types']
-          }
-        }
-      ]
-    },
-    {
-      test: /\.js(x)?$/,
-      exclude: /node_modules/,
-      use: [
-        {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env'],
-            plugins: ['transform-react-jsx']
+            presets: ['flow', 'env'],
+            plugins: [
+              'syntax-jsx',
+              'transform-react-jsx',
+              'transform-flow-strip-types'
+            ]
           }
         }
       ]

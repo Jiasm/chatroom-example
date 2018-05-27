@@ -1,15 +1,23 @@
+// @flow
+
 import chatroom from '../common/chatroom-handlers'
-import React from 'react'
+import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
 window.addEventListener('load', () => {
   chatroom.init()
 })
 
-class Test extends React.Component {
+// #FlowIgnoreAsset
+class Test extends Component {
   render() {
+    let str: string = 'hello'
+    console.log(str)
     return <div>Hello React</div>
   }
 }
 
-ReactDOM.render(<Test />, document.querySelector('#app'))
+let $app = document.querySelector('#app')
+if ($app) {
+  ReactDOM.render(<Test />, $app)
+}
