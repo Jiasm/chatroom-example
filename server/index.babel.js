@@ -7,7 +7,7 @@ import views from 'koa-views'
 import socket from 'socket.io'
 import http from 'http'
 import path from 'path'
-import ioHandler from './io-handler'
+import ioHandler from './libs/io-handler'
 
 const app = new Koa()
 const router = new Router()
