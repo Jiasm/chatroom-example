@@ -8,6 +8,7 @@ import socket from 'socket.io'
 import http from 'http'
 import path from 'path'
 import ioHandler from './libs/io-handler'
+import loadRouters from './libs/loadRouters.js'
 
 const app = new Koa()
 const router = new Router()
@@ -32,17 +33,7 @@ app.use(
   })
 )
 
-router.get('/react', async (context, next) => {
-  await context.render('react', {
-    title: 'react-chatroom'
-  })
-})
-
-router.get('/vue', async (context, next) => {
-  await context.render('vue', {
-    title: 'vue-chatroom'
-  })
-})
+app.use(loadRouters('routes'))
 
 app.use(router.routes()).use(router.allowedMethods())
 
