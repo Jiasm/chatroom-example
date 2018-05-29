@@ -1,17 +1,19 @@
+// @flow
+
 'use strict'
 
-const path = require('path')
-const compose = require('koa-compose')
-const fs = require('fs')
-const conf = require('../conf/global.js')
-const Router = require('koa-router')
-const winston = require('winston')
-const mkdirp = require('mkdirp')
+import path from 'path'
+import compose from 'koa-compose'
+import fs from 'fs'
+import conf from '../../conf'
+import Router from 'koa-router'
+import winston from 'winston'
+import mkdirp from 'mkdirp'
 require('winston-daily-rotate-file')
 const dirname = path.dirname(process.mainModule.filename)
 
 // fix: auto generate log folder
-const logRoot = path.resolve(dirname, './logs')
+const { logRoot } = conf
 if (!fs.existsSync(logRoot)) {
   mkdirp.sync(logRoot)
 }
@@ -64,7 +66,7 @@ function files() {
         accessLog.info(Object.assign({}, obj, data))
       }
 
-      logger.error = (self, error, data) => {
+      logger.error = (self: any, error: Error, data) => {
         let obj = {
           href: self.request.href,
           header: JSON.stringify(self.request.header),
