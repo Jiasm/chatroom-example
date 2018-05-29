@@ -9,7 +9,7 @@ import conf from '../../conf'
 import Router from 'koa-router'
 import winston from 'winston'
 import mkdirp from 'mkdirp'
-require('winston-daily-rotate-file')
+import 'winston-daily-rotate-file'
 const dirname = path.dirname(process.mainModule.filename)
 
 // fix: auto generate log folder
@@ -29,10 +29,7 @@ function files() {
     dirs.map(function(value) {
       value = value.replace(/(\.js|\.json)$/, '')
 
-      let logger = {
-        access() {},
-        error() {}
-      }
+      let logger = {}
 
       let accessLog = new winston.Logger({
         transports: [
@@ -55,7 +52,7 @@ function files() {
         ]
       })
 
-      logger.access = (self, data) => {
+      logger.access = (self: any, data): void => {
         // console.log('=>>', self)
         let obj = {
           href: self.request.href,
@@ -66,7 +63,7 @@ function files() {
         accessLog.info(Object.assign({}, obj, data))
       }
 
-      logger.error = (self: any, error: Error, data) => {
+      logger.error = (self: any, error: Error, data): void => {
         let obj = {
           href: self.request.href,
           header: JSON.stringify(self.request.header),
