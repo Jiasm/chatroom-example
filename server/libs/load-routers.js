@@ -19,8 +19,7 @@ if (!fs.existsSync(logRoot)) {
 }
 let routers = []
 
-function files() {
-  let name = 'routes'
+export default (name: string = 'routes') => {
   let dirname = path.dirname(process.mainModule.filename)
   let appPath = path.join(dirname, name)
   if (fs.existsSync(appPath)) {
@@ -82,6 +81,7 @@ function files() {
 
       if (value.indexOf('.') !== 0) {
         apps[value] = path.join(dirname, name, value)
+        // #FlowIgnoreAsset
         let route = require(apps[value])
         if (typeof route === 'function') {
           route(router, conf, logger)
@@ -92,8 +92,6 @@ function files() {
 
     return compose(routers)
   } else {
-    return []
+    return async (context: any, next: Function) => await next()
   }
 }
-
-module.exports = files
