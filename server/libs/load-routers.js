@@ -12,19 +12,25 @@ import mkdirp from 'mkdirp'
 import 'winston-daily-rotate-file'
 const dirname = path.dirname(process.mainModule.filename)
 
+import reactRouter from '../routes/react'
+import vueRouter from '../routes/vue'
+
 // fix: auto generate log folder
 const { logRoot } = conf
 if (!fs.existsSync(logRoot)) {
   mkdirp.sync(logRoot)
 }
 let routers = []
+const apps = {
+  react: reactRouter,
+  vue: vueRouter
+}
 
 export default (name: string = 'routes') => {
   let dirname = path.dirname(process.mainModule.filename)
   let appPath = path.join(dirname, name)
   if (fs.existsSync(appPath)) {
     let dirs = fs.readdirSync(appPath)
-    let apps = {}
     dirs.map(function(value) {
       value = value.replace(/(\.js|\.json)$/, '')
 
@@ -80,9 +86,10 @@ export default (name: string = 'routes') => {
       })
 
       if (value.indexOf('.') !== 0) {
-        apps[value] = path.join(dirname, name, value)
+        // apps[value] = path.resolve(dirname, name, value)
+
         // #FlowIgnoreAsset
-        let route = require(apps[value])
+        let route = apps[value]
         if (typeof route === 'function') {
           route(router, conf, logger)
         }
