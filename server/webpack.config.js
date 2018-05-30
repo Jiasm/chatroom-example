@@ -44,7 +44,7 @@ module.exports = {
       warn: true
     }),
     new webpack.IgnorePlugin(
-      /(atpl|bracket|dot|doT.js|dust|dustjs-linkedin|eco|ect|ejs|haml|haml-coffee|hamlet|hiredis|handlebars|hogan|htmling|jade|jazz|jqtpl|just|liquor|lodash|marko|mote|mustache|nunjucks|plates|pug|QEJS|ractive|react|slm|swig|swig|teacup|templayed|twig|liquid|toffee|underscore|vash|walrus|whiskers)/
+      /(atpl|bracket|dot|doT.js|dust|dustjs-linkedin|eco|ect|ejs|haml|haml-coffee|hamlet|hiredis|handlebars|hogan|htmling|jade|jazz|jqtpl|just|liquor|lodash|marko|mote|mustache|nunjucks|plates|pug|QEJS|ractive|slm|swig|swig|teacup|templayed|twig|liquid|toffee|underscore|vash|walrus|whiskers)/
     )
   ],
   devtool: false,
