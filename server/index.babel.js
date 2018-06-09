@@ -4,6 +4,7 @@ import Koa from 'koa'
 import Router from 'koa-router'
 import serve from 'koa-static'
 import views from 'koa-views'
+import bodyPaser from 'koa-bodyparser'
 import socket from 'socket.io'
 import http from 'http'
 import path from 'path'
@@ -33,6 +34,7 @@ app.use(
   })
 )
 
+app.use(bodyPaser())
 app.use(loadRouters('routes'))
 
 // app.use(router.routes()).use(router.allowedMethods())

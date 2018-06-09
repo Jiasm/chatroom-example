@@ -10,10 +10,8 @@ import Router from 'koa-router'
 import winston from 'winston'
 import mkdirp from 'mkdirp'
 import 'winston-daily-rotate-file'
+import * as apps from '../conf/route-map'
 const dirname = path.dirname(process.mainModule.filename)
-
-import reactRouter from '../routes/react'
-import vueRouter from '../routes/vue'
 
 // fix: auto generate log folder
 const { logRoot } = conf
@@ -21,10 +19,6 @@ if (!fs.existsSync(logRoot)) {
   mkdirp.sync(logRoot)
 }
 let routers = []
-const apps = {
-  react: reactRouter,
-  vue: vueRouter
-}
 
 export default (name: string = 'routes') => {
   let dirname = path.dirname(process.mainModule.filename)
