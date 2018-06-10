@@ -1,5 +1,4 @@
 // @flow
-
 import { createAccount, login } from '../data/account'
 
 export default (router: any, config: Object, logger: any) => {
