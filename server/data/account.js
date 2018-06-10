@@ -23,7 +23,10 @@ export async function createAccount({
  * @param {string} account   账号
  * @param {string} password  密码
  */
-export async function login({ account, password }: Account): Promise<string> {
+export async function login({
+  account,
+  password
+}: Account): Promise<string | null> {
   return 'xxx'
 }
 
